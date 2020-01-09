@@ -1,0 +1,36 @@
+server:
+  port: 9000
+  servlet:
+    session:
+      cookie:
+        name: AUTHSERVERSESSIONID
+security:
+  jwt:
+    key-store: classpath:demo_keystore.jks
+    key-store-password: secret
+    key-pair-alias: chuck
+    key-pair-password: secret
+    kid: auth-1
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth-service-db
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    hikari:
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+      maximumPoolSize: 20
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
+    initialization-mode: always
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.jdbc.core: TRACE

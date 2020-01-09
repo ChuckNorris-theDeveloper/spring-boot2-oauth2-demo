@@ -1,0 +1,29 @@
+server:
+  servlet:
+    session:
+      cookie:
+        name: WEBAPPSESSIONID
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          # registrationId: 'local-auth-provider'
+          local-auth-provider:
+            clientId: clientId
+            clientSecret: secret
+            authorization-grant-type: authorization_code
+            redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - read
+              - write
+        # provider details (e.g. user info endpoint to leverage openid protocol)
+        provider:
+          local-auth-provider:
+            authorizationUri: http://localhost:9000/oauth/authorize
+            tokenUri: http://localhost:9000/oauth/token
+            user-info-uri: http://localhost:9100/me
+            user-name-attribute: name
+logging:
+  level:
+    org.springframework.security: DEBUG

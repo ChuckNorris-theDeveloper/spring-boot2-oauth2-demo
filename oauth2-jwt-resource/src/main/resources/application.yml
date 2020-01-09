@@ -1,0 +1,14 @@
+server:
+  port: 9100
+security:
+  oauth2:
+    resource:
+      jwk:
+        key-set-uri: http://localhost:9000/.well-known/jwks.json
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+logging:
+  level:
+    org.springframework.security: DEBUG
